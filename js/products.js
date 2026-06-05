@@ -1,0 +1,226 @@
+// ── Product Data ──
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'Nora',
+    sub: 'Văn trơn ',
+    price: '59,000đ',
+    priceOld: '150,000đ',
+    badge: 'Bán Chạy',
+    rating: '★★★★★',
+    ratingCount: '42 đánh giá',
+    img: 'img/img1.png',
+    imgFallback: 'img/img4.png',
+    desc: 'Thiết kế vòng đeo bắp tay thời trang, dễ phối đồ • Phong cách biển với charm sao biển, vỏ sò, mặt trời,... cực trendy • Có thể tùy chọn charm chữ cái theo tên riêng • Chất liệu nhẹ, đeo thoải mái • Phù hợp chụp ảnh, đi biển, cafe, festival, du lịch,...',
+    attrs: [
+      { label: 'Chất Liệu', value: 'Ngọc trai biển tự nhiên, chỉ lụa cao cấp' },
+      { label: 'Kích Thước', value: 'S / M / L (điều chỉnh được)' },
+      { label: 'Màu Sắc', value: 'Vàng, Bạc' },
+      { label: 'Xuất Xứ', value: 'Thủ công · Việt Nam' }
+    ],
+    imgs: [
+      'img/img1.png',
+      'img/img2.png',
+      'img/img3.png'
+    ]
+  },
+  {
+    id: 2,
+    name: 'Solar',
+    sub: 'Ngọc · Vàng 14k',
+    price: '59,000đ',
+    priceOld: null,
+    badge: 'Mới',
+    rating: '★★★★★',
+    ratingCount: '28 đánh giá',
+    img: 'img/img6.png',
+    imgFallback: 'img/img6.png',
+    desc: 'Solar mang hơi thở của những rạn san hô nhiệt đới vào từng chi tiết. Kết hợp vỏ sò tự nhiên và mảnh san hô nhỏ với gam màu be ấm áp, chiếc vòng là người bạn đồng hành hoàn hảo cho những ngày biển hè.',
+    attrs: [
+      { label: 'Chất Liệu', value: 'Vàng 14k, đá quý' },
+      { label: 'Kích Thước', value: 'Free size (điều chỉnh được)' },
+      { label: 'Màu Sắc', value: 'Vàng 14k' },
+      { label: 'Xuất Xứ', value: 'Thủ công · Việt Nam' }
+    ],
+    imgs: [
+      'img/img6.png',
+      'img/img6.png',
+      ''
+    ]
+  },
+  {
+    id: 3,
+    name: 'Selene',
+    sub: 'Vàng 14k · Lá cuộn sóng biển',
+    price: '59,000đ',
+    priceOld: '199,000đ',
+    badge: 'Giảm 20%',
+    rating: '★★★★☆',
+    ratingCount: '35 đánh giá',
+    img: 'img/img3.png',
+    imgFallback: 'img/img3.png',
+    desc: 'Selene lấy cảm hứng từ những con sóng biển mạnh mẽ và cuồn cuộn. Đá biển xanh được mài nhẵn theo hình con sóng, kết hợp với dây bạc 925 tạo nên một tác phẩm trang sức vừa phóng khoáng vừa sang trọng.',
+    attrs: [
+      { label: 'Chất Liệu', value: 'Vàng 14k, bạc 925' },
+      { label: 'Kích Thước', value: 'S / M / L' },
+      { label: 'Màu Sắc', value: 'Bạc' },
+      { label: 'Xuất Xứ', value: 'Thủ công · Việt Nam' }
+    ],
+    imgs: [
+      'img/img3 .png',
+      '',
+      ''
+    ]
+  },
+  {
+    id: 4,
+    name: 'Aura',
+    sub: 'Đá lapis lazuli · Màu xanh đêm',
+    price: '59,000đ',
+    priceOld: null,
+    badge: null,
+    rating: '★★★★★',
+    ratingCount: '19 đánh giá',
+    img: 'img/img8.png',
+    imgFallback: 'img/img8.png',
+    desc: 'Aura là vòng lớn là vòng nhỏ là tinh hoa của dòng Premium — được chế tác từ đá lapis lazuli thật sự quý hiếm với màu xanh đêm sâu thẳm như bầu trời sau hoàng hôn trên đại dương. Mỗi viên đá là một tác phẩm nghệ thuật độc nhất vô nhị.',
+    attrs: [
+      { label: 'Chất Liệu', value: 'Đá lapis lazuli tự nhiên, bạc' },
+      { label: 'Kích Thước', value: 'Free size (điều chỉnh được)' },
+      { label: 'Màu Sắc', value: 'Xanh lapis đậm' },
+      { label: 'Xuất Xứ', value: 'Thủ công · Việt Nam' }
+    ],
+    imgs: [
+      'img/img8.png',
+      '',
+      ''
+    ]
+  },
+  {
+    id: 5,
+    name: 'Luna',
+    sub: 'Đá lapis lazuli · Màu xanh đêm',
+    price: '59,000đ',
+    priceOld: '259,000đ',
+    badge: 'Premium',
+    rating: '★★★★★',
+    ratingCount: '11 đánh giá',
+    img: 'img/img7.png',
+    imgFallback: 'img/img7.png',
+    desc: 'Luna là vòng nhỏ là tinh hoa của dòng Premium — được chế tác từ đá lapis lazuli thật sự quý hiếm với màu xanh đêm sâu thẳm như bầu trời sau hoàng hôn trên đại dương. Mỗi viên đá là một tác phẩm nghệ thuật độc nhất vô nhị.',
+    attrs: [
+      { label: 'Chất Liệu', value: 'Đá lapis lazuli tự nhiên, vàng 14K' },
+      { label: 'Kích Thước', value: 'S / M / L' },
+      { label: 'Màu Sắc', value: 'Xanh lapis đậm' },
+      { label: 'Xuất Xứ', value: 'Thủ công · Việt Nam' }
+    ],
+    imgs: [
+      'img/img7.png',
+      '',
+      ''
+    ]
+  }
+];
+
+// ── Render Products ──
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  if (!grid) return;
+
+  grid.innerHTML = PRODUCTS.map(p => `
+    <div class="product-card" onclick="showDetail(${p.id})" style="cursor:pointer;">
+      <div class="product-img-wrap">
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+        <img
+          src="${p.img}"
+          alt="${p.name}"
+          onerror="this.src='${p.imgFallback}'"
+          loading="lazy"
+        />
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p class="product-sub">${p.sub}</p>
+        <div class="product-price-row">
+          <div>
+            <span class="product-price">${p.price}</span>
+            ${p.priceOld ? `<span class="product-price-old">${p.priceOld}</span>` : ''}
+          </div>
+          <div>
+            <div class="product-rating">${p.rating}</div>
+            <div style="font-size:.6rem;color:var(--gray-400);text-align:right;">${p.ratingCount}</div>
+          </div>
+        </div>
+        <button
+          class="btn-add-cart"
+          onclick='event.stopPropagation(); addToCart(${JSON.stringify(p).replace(/'/g, "\\'")})'
+        >
+          <svg viewBox="0 0 24 24" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+          </svg>
+          Thêm Vào Giỏ Hàng
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Show Product Detail ──
+function showDetail(productId) {
+  const p = PRODUCTS.find(x => x.id === productId);
+  if (!p) return;
+
+  // Fill detail fields
+  document.getElementById('detail-name').textContent = p.name;
+  document.getElementById('detail-sub').textContent = p.sub;
+  document.getElementById('detail-price').textContent = p.price;
+  document.getElementById('detail-price-old').textContent = p.priceOld || '';
+  document.getElementById('detail-stars').textContent = p.rating;
+  document.getElementById('detail-rating-count').textContent = p.ratingCount;
+  document.getElementById('detail-desc').textContent = p.desc;
+
+  const badge = document.getElementById('detail-badge');
+  badge.textContent = p.badge || '';
+
+  // Main image
+  const mainImg = document.getElementById('detail-img');
+  mainImg.src = p.imgs[0];
+  mainImg.onerror = () => { mainImg.src = p.imgFallback; };
+  mainImg.alt = p.name;
+
+  // Thumbnails
+  const thumbs = document.getElementById('detail-thumbnails');
+  thumbs.innerHTML = p.imgs.map((src, i) => `
+    <img
+      class="detail-thumb ${i === 0 ? 'active' : ''}"
+      src="${src}"
+      alt="${p.name} ${i+1}"
+      onerror="this.src='${p.imgFallback}'"
+      onclick="switchDetailImg(this, '${src}')"
+    />
+  `).join('');
+
+  // Attributes
+  const attrs = document.getElementById('detail-attrs');
+  attrs.innerHTML = p.attrs.map(a => `
+    <div class="detail-attr">
+      <span class="detail-attr-label">${a.label}</span>
+      <span class="detail-attr-value">${a.value}</span>
+    </div>
+  `).join('');
+
+  // Cart button
+  document.getElementById('detail-btn-cart').onclick = () => addToCart(p);
+
+  showPage('product-detail');
+}
+
+function switchDetailImg(thumbEl, src) {
+  document.getElementById('detail-img').src = src;
+  document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+  thumbEl.classList.add('active');
+}
+
+// ── Init on load ──
+document.addEventListener('DOMContentLoaded', renderProducts);
