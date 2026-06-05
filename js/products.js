@@ -1,4 +1,50 @@
-// ── Product Data ──
+// ── Reviews Data ──
+const REVIEWS = {
+  1: [
+    { name: 'Nguyễn Thảo', stars: 5, date: '12/05/2025', content: 'Vòng đẹp lắm ạ, đeo đi biển rất hợp. Chất liệu nhẹ, không bị kích ứng da. Shop đóng gói cẩn thận, giao nhanh!' },
+    { name: 'Minh Châu', stars: 5, date: '03/05/2025', content: 'Mình order cho bạn thân làm quà, bạn mình thích lắm. Hộp đựng xinh xắn, sản phẩm y hình.' },
+    { name: 'Linh Phạm', stars: 4, date: '28/04/2025', content: 'Màu sắc đẹp hơn ngoài thực tế luôn. Dây chắc, charm không bị bong. Sẽ ủng hộ shop tiếp!' }
+  ],
+  2: [
+    { name: 'Trần Hà', stars: 5, date: '10/05/2025', content: 'Solar là chiếc vòng yêu thích nhất của mình rồi! Màu vàng rất sang, đeo với váy trắng là chuẩn nhất.' },
+    { name: 'Bảo Thy', stars: 5, date: '01/05/2025', content: 'Nhìn ảnh đã thích, cầm trực tiếp càng thích hơn. Shop tư vấn nhiệt tình, giao đúng hẹn.' },
+    { name: 'Kim Ngân', stars: 4, date: '25/04/2025', content: 'Mình mua 2 cái tặng bạn bè đi du lịch. Ai cũng khen đẹp hỏi mua ở đâu. Giá rất ok!' }
+  ],
+  3: [
+    { name: 'Phương Anh', stars: 5, date: '08/05/2025', content: 'Selene siêu xinh luôn ạ! Đeo đi biển Đà Nẵng được khen cả ngày. Cảm ơn shop!' },
+    { name: 'Ngọc Hân', stars: 5, date: '29/04/2025', content: 'Chất lượng tốt, giá hợp lý. Mình thích cái charm lá cuộn rất độc đáo, không trùng với ai.' },
+    { name: 'Mai Linh', stars: 4, date: '20/04/2025', content: 'Giao hàng hơi lâu nhưng sản phẩm rất ổn. Dây bền, đeo cả tuần chưa thấy phai màu.' }
+  ],
+  4: [
+    { name: 'Quỳnh Như', stars: 5, date: '11/05/2025', content: 'Đá lapis xanh rất đẹp, nhìn sang trọng hơn nhiều so với giá tiền. Mình đã mua thêm cho mẹ!' },
+    { name: 'Thanh Huyền', stars: 5, date: '05/05/2025', content: 'Aura là món trang sức đẹp nhất tủ đồ mình rồi. Đóng gói bằng hộp giấy cứng, rất an toàn.' },
+    { name: 'Vân Anh', stars: 4, date: '26/04/2025', content: 'Mình lo đá giả nhưng nhìn thật tay thì rõ ràng là đá thật. Rất hài lòng, sẽ order tiếp!' }
+  ],
+  5: [
+    { name: 'Hồng Nhung', stars: 5, date: '09/05/2025', content: 'Luna nhỏ nhắn dễ thương, đeo hằng ngày đi làm cũng được. Shop giao nhanh hơn dự kiến.' },
+    { name: 'Diệu Linh', stars: 5, date: '02/05/2025', content: 'Mua tặng bạn gái ngày lễ, bạn ấy thích lắm! Hộp quà đẹp, không cần bọc thêm gì nữa.' },
+    { name: 'Ánh Tuyết', stars: 5, date: '22/04/2025', content: 'Premium xứng đáng với giá. Đá đẹp, dây chắc, charm không bị lỏng. 10/10!' }
+  ]
+};
+
+function renderReviews(productId) {
+  const grid = document.getElementById('reviews-grid');
+  if (!grid) return;
+  const reviews = REVIEWS[productId] || [];
+  grid.innerHTML = reviews.map(r => `
+    <div class="review-card">
+      <div class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+      <p class="review-content">"${r.content}"</p>
+      <div class="review-author">
+        <div class="review-avatar">${r.name.charAt(0)}</div>
+        <div>
+          <div class="review-name">${r.name}</div>
+          <div class="review-date">${r.date}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
 const PRODUCTS = [
   {
     id: 1,
@@ -20,8 +66,8 @@ const PRODUCTS = [
     ],
     imgs: [
       'img/img1.png',
-      'img/img2.png',
-      'img/img3.png'
+      'img/img18.png',
+      'img/img21.png'
     ]
   },
   {
@@ -44,8 +90,8 @@ const PRODUCTS = [
     ],
     imgs: [
       'img/img6.png',
-      'img/img6.png',
-      ''
+      'img/img20.png',
+      'img/img21.png'
     ]
   },
   {
@@ -68,8 +114,8 @@ const PRODUCTS = [
     ],
     imgs: [
       'img/img3 .png',
-      '',
-      ''
+      'img/img19.png',
+      'img/img21.png'
     ]
   },
   {
@@ -92,8 +138,8 @@ const PRODUCTS = [
     ],
     imgs: [
       'img/img8.png',
-      '',
-      ''
+      'img/img19.png',
+      'img/img18.png'
     ]
   },
   {
@@ -116,8 +162,8 @@ const PRODUCTS = [
     ],
     imgs: [
       'img/img7.png',
-      '',
-      ''
+      'img/img20.png',
+      'img/img18.png'
     ]
   }
 ];
@@ -212,6 +258,9 @@ function showDetail(productId) {
 
   // Cart button
   document.getElementById('detail-btn-cart').onclick = () => addToCart(p);
+
+  // Reviews
+  renderReviews(p.id);
 
   showPage('product-detail');
 }
