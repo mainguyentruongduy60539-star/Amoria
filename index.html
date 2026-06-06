@@ -26,6 +26,22 @@
       if (d) d.classList.remove('open');
       if (o) o.classList.remove('open');
     }
+    function toggleCart() {
+      var d = document.getElementById('cart-drawer');
+      if (d && d.classList.contains('open')) { closeCart(); } else { openCart(); }
+    }
+    function toggleMenu() {
+      var nav = document.getElementById('nav-links');
+      var btn = document.getElementById('hamburger');
+      if (nav) nav.classList.toggle('open');
+      if (btn) btn.classList.toggle('active');
+    }
+    function closeMenu() {
+      var nav = document.getElementById('nav-links');
+      var btn = document.getElementById('hamburger');
+      if (nav) nav.classList.remove('open');
+      if (btn) btn.classList.remove('active');
+    }
   </script>
 </head>
 <body>
@@ -38,19 +54,24 @@
     <img src="img/img17.png" alt="Amoria Logo" class="nav-logo-img" />
   </a>
 
-  <ul class="nav-links">
-    <li><a data-page="products" href="#" onclick="showPage('products');return false;">Sản Phẩm</a></li>
-    <li><a data-page="policy" href="#" onclick="showPage('policy');return false;">Chính Sách</a></li>
-    <li><a data-page="contact" href="#" onclick="showPage('contact');return false;">Liên Hệ</a></li>
+  <ul class="nav-links" id="nav-links">
+    <li><a data-page="products" href="#" onclick="showPage('products');closeMenu();return false;">Sản Phẩm</a></li>
+    <li><a data-page="policy" href="#" onclick="showPage('policy');closeMenu();return false;">Chính Sách</a></li>
+    <li><a data-page="contact" href="#" onclick="showPage('contact');closeMenu();return false;">Liên Hệ</a></li>
   </ul>
 
-  <div class="nav-cart" onclick="openCart()">
-    <svg viewBox="0 0 24 24" stroke-width="1.5">
-      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-      <line x1="3" y1="6" x2="21" y2="6"/>
-      <path d="M16 10a4 4 0 01-8 0"/>
-    </svg>
-    <div class="cart-badge" id="cart-badge">0</div>
+  <div class="nav-right">
+    <div class="nav-cart" id="nav-cart-btn" onclick="toggleCart()">
+      <svg viewBox="0 0 24 24" stroke-width="1.5">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <div class="cart-badge" id="cart-badge">0</div>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
