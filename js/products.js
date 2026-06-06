@@ -182,7 +182,6 @@ function renderProducts() {
       </div>
       <div class="product-info">
         <h3>${p.name}</h3>
-        <p class="product-sub">${p.sub}</p>
         <div class="product-price-row">
           <div>
             <span class="product-price">${p.price}</span>
