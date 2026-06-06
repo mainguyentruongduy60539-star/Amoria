@@ -214,7 +214,6 @@ function showDetail(productId) {
 
   // Fill detail fields
   document.getElementById('detail-name').textContent = p.name;
-  document.getElementById('detail-sub').textContent = p.sub;
   document.getElementById('detail-price').textContent = p.price;
   document.getElementById('detail-price-old').textContent = p.priceOld || '';
   document.getElementById('detail-stars').textContent = p.rating;
