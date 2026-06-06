@@ -16,14 +16,10 @@ const REVIEWS = {
     { name: 'Mai Linh', stars: 4, date: '20/04/2025', content: 'Giao hàng hơi lâu nhưng sản phẩm rất ổn. Dây bền, đeo cả tuần chưa thấy phai màu.' }
   ],
   4: [
-    { name: 'Quỳnh Như', stars: 5, date: '11/05/2025', content: 'Đá lapis xanh rất đẹp, nhìn sang trọng hơn nhiều so với giá tiền. Mình đã mua thêm cho mẹ!' },
-    { name: 'Thanh Huyền', stars: 5, date: '05/05/2025', content: 'Aura là món trang sức đẹp nhất tủ đồ mình rồi. Đóng gói bằng hộp giấy cứng, rất an toàn.' },
-    { name: 'Vân Anh', stars: 4, date: '26/04/2025', content: 'Mình lo đá giả nhưng nhìn thật tay thì rõ ràng là đá thật. Rất hài lòng, sẽ order tiếp!' }
+    { name: 'Quỳnh Như', stars: 5, date: '11/05/2025', content: 'Đá lapis xanh rất đẹp, nhìn sang trọng hơn nhiều so với giá tiền. Mình đã mua thêm cho mẹ!' }
   ],
   5: [
-    { name: 'Hồng Nhung', stars: 5, date: '09/05/2025', content: 'Luna nhỏ nhắn dễ thương, đeo hằng ngày đi làm cũng được. Shop giao nhanh hơn dự kiến.' },
-    { name: 'Diệu Linh', stars: 5, date: '02/05/2025', content: 'Mua tặng bạn gái ngày lễ, bạn ấy thích lắm! Hộp quà đẹp, không cần bọc thêm gì nữa.' },
-    { name: 'Ánh Tuyết', stars: 5, date: '22/04/2025', content: 'Premium xứng đáng với giá. Đá đẹp, dây chắc, charm không bị lỏng. 10/10!' }
+    { name: 'Hồng Nhung', stars: 5, date: '09/05/2025', content: 'Luna nhỏ nhắn dễ thương, đeo hằng ngày đi làm cũng được. Shop giao nhanh hơn dự kiến.' }
   ]
 };
 
@@ -49,9 +45,9 @@ const PRODUCTS = [
   {
     id: 1,
     name: 'Nora',
-    sub: 'Văn trơn ',
+    sub: null,
     price: '59,000đ',
-    priceOld: '150,000đ',
+    priceOld: '79,000đ',
     badge: 'Bán Chạy',
     rating: '★★★★★',
     ratingCount: '42 đánh giá',
@@ -73,8 +69,8 @@ const PRODUCTS = [
   {
     id: 2,
     name: 'Solar',
-    sub: 'Ngọc · Vàng 14k',
-    price: '59,000đ',
+    sub: null,
+    price: '75,000đ',
     priceOld: null,
     badge: 'Mới',
     rating: '★★★★★',
@@ -97,10 +93,10 @@ const PRODUCTS = [
   {
     id: 3,
     name: 'Selene',
-    sub: 'Vàng 14k · Lá cuộn sóng biển',
-    price: '59,000đ',
-    priceOld: '199,000đ',
-    badge: 'Giảm 20%',
+    sub: null,
+    price: '79,000đ',
+    priceOld: null,
+    badge: null,
     rating: '★★★★☆',
     ratingCount: '35 đánh giá',
     img: 'img/img3.png',
@@ -121,10 +117,10 @@ const PRODUCTS = [
   {
     id: 4,
     name: 'Aura',
-    sub: 'Đá lapis lazuli · Màu xanh đêm',
+    sub: null,
     price: '59,000đ',
     priceOld: null,
-    badge: null,
+    badge: 'Mới',
     rating: '★★★★★',
     ratingCount: '19 đánh giá',
     img: 'img/img8.png',
@@ -145,10 +141,10 @@ const PRODUCTS = [
   {
     id: 5,
     name: 'Luna',
-    sub: 'Đá lapis lazuli · Màu xanh đêm',
+    sub: null,
     price: '59,000đ',
-    priceOld: '259,000đ',
-    badge: 'Premium',
+    priceOld: null,
+    badge: 'Mới',
     rating: '★★★★★',
     ratingCount: '11 đánh giá',
     img: 'img/img7.png',
@@ -241,7 +237,7 @@ function showDetail(productId) {
     <img
       class="detail-thumb ${i === 0 ? 'active' : ''}"
       src="${src}"
-      alt="${p.name} ${i+1}"
+      alt="${p.name} ${i + 1}"
       onerror="this.src='${p.imgFallback}'"
       onclick="switchDetailImg(this, '${src}')"
     />
