@@ -74,7 +74,7 @@
       letter-spacing: .08em;
     }
 
-    .admin-header a.back-link {
+    .admin-header .back-link {
       margin-left: auto;
       font-size: .85rem;
       color: var(--muted);
@@ -85,7 +85,7 @@
       transition: color .2s;
     }
 
-    .admin-header a.back-link:hover {
+    .admin-header .back-link:hover {
       color: var(--accent);
     }
 
@@ -328,6 +328,130 @@
       transform: translateY(0);
     }
 
+    /* ── LOGIN MODAL ── */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 15, 19, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+    }
+
+    .login-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .login-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+      animation: slideUp .3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+    }
+
+    .login-modal-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+
+    .login-form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .login-form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--text);
+    }
+
+    .login-form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.9rem;
+      transition: border-color .2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .login-form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .login-btn-submit {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      background: linear-gradient(135deg, #c9a96e, #e8c98a);
+      color: #1a1000;
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+      letter-spacing: .02em;
+    }
+
+    .login-btn-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .login-btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .login-btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .login-error {
+      font-size: 0.8rem;
+      color: var(--danger);
+      margin-bottom: 1rem;
+      text-align: center;
+      min-height: 1.2rem;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .admin-header {
@@ -341,11 +465,32 @@
       .section-header {
         padding: 1rem;
       }
+
+      .login-modal {
+        padding: 2rem 1.5rem;
+        max-width: 90%;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Login Modal -->
+  <div class="login-overlay show" id="login-overlay">
+    <div class="login-modal">
+      <h2 class="login-modal-title">Quản Trị Viên</h2>
+      <p class="login-modal-desc">Nhập mật khẩu để truy cập bảng quản lý</p>
+      <form id="login-form">
+        <div class="login-error" id="login-error"></div>
+        <div class="login-form-group">
+          <label for="login-password">Mật Khẩu</label>
+          <input type="password" id="login-password" placeholder="Nhập mật khẩu..." required autocomplete="current-password" />
+        </div>
+        <button type="submit" class="login-btn-submit">Đăng Nhập</button>
+      </form>
+    </div>
+  </div>
 
   <!-- Header -->
   <header class="admin-header">
@@ -358,6 +503,12 @@
       </svg>
       Về trang chủ
     </a>
+    <button class="back-link" onclick="logoutAdmin()" title="Đăng xuất" style="background:none;border:none;cursor:pointer;padding:0;margin-left:.8rem;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+      </svg>
+      Đăng xuất
+    </button>
   </header>
 
   <div class="admin-body">
@@ -548,6 +699,60 @@
   <div id="toast">✔ Đã xuất file Excel!</div>
 
   <script>
+    /* ════════════════════════════════════════
+       AUTHENTICATION
+    ════════════════════════════════════════ */
+    var ADMIN_PASSWORD = 'Amoria@123';
+
+    function loginAdmin(password) {
+      if (password === ADMIN_PASSWORD) {
+        var overlay = document.getElementById('login-overlay');
+        if (overlay) overlay.classList.remove('show');
+        return true;
+      }
+      return false;
+    }
+
+    function logoutAdmin() {
+      var overlay = document.getElementById('login-overlay');
+      var passwordInput = document.getElementById('login-password');
+      if (overlay) overlay.classList.add('show');
+      if (passwordInput) passwordInput.value = '';
+    }
+
+    // Khởi tạo kiểm tra xác thực khi trang load
+    (function initAuth() {
+      var overlay = document.getElementById('login-overlay');
+      var form = document.getElementById('login-form');
+      var passwordInput = document.getElementById('login-password');
+      var errorMsg = document.getElementById('login-error');
+
+      // Luôn hiển thị modal login khi vào trang
+      if (overlay) overlay.classList.add('show');
+
+      // Xử lý submit form
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var password = passwordInput ? passwordInput.value : '';
+
+          if (loginAdmin(password)) {
+            // Đăng nhập thành công, làm mới dữ liệu
+            render();
+            if (errorMsg) errorMsg.textContent = '';
+            if (passwordInput) passwordInput.value = '';
+          } else {
+            // Sai mật khẩu
+            if (errorMsg) errorMsg.textContent = '❌ Mật khẩu không đúng. Vui lòng thử lại.';
+            if (passwordInput) passwordInput.value = '';
+          }
+        });
+      }
+
+      // Focus vào password input
+      if (passwordInput) passwordInput.focus();
+    })();
+
     /* ════════════════════════════════════════
        DATA HELPERS
     ════════════════════════════════════════ */
